@@ -13,7 +13,7 @@ public class AnimalController {
     private Map<Integer, Animal> animals = new HashMap<>();
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<Animal> getData(){
         return animals.values().stream().toList();
     }
@@ -23,10 +23,9 @@ public class AnimalController {
             return animals.get(id);
     }
 
-    @PostMapping("/")
-    public void addAnimal(String name, int id){
-        Animal animal = new Animal(id, name);
-        animals.put(id, animal);
+    @PostMapping
+    public void addAnimal(@RequestBody Animal animal){
+        animals.put(animal.getId(), animal);
     }
 
     @PutMapping("/{id}")
